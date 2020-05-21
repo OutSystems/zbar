@@ -29,6 +29,17 @@ To add the SDK to an Xcode project:
       * QuartzCore.framework
       * libiconv.dylib
 
+Generate Universal Library
+--------------------------
+
+To incorporate this library in [cszbar](https://github.com/OutSystems/csZBar/tree/outsystems) plugin, we must generate it with Xcode 10 (to ensure backwards compatibility) in Release mode. Then, we must do the following steps:
+   
+   1. Build the library for iOS Generic device
+   2. Build the library for iOS Simulator
+   3. Having both libraries generated, run the command 
+   `lipo -create -output "{universal-dir}/libzbar.a" "{build-dir}/{config}-iphoneos/libzbar.a" "{build-dir}/{config}-iphonesimulator/libzbar.a"`
+   to build an unique universal library that can be used for both iOS Generic device and iOS Simulator
+
 Documentation
 -------------
 
@@ -61,6 +72,6 @@ Copyright and License
 Licensed under the GNU Lesser General Public License, version 2.1.
 http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
 
-Copyright 2008-2011 © Jeff Brown <spadix@users.sourceforge.net> et al
+Copyright 2008-2011 ï¿½ Jeff Brown <spadix@users.sourceforge.net> et al
 
 See the included files COPYING and LICENSE.md for details
